@@ -26,9 +26,9 @@ $ git clone https://github.com/saurabdixit/RoboND-DeepLearning-Project.git
 * Make sure that you have RoboND conda environment and tensorflow installed. Navigate to the code directory, activate your conda environment, and open the jupyter notebook labeled as model_training_6.ipynb.
 ```
 conda activate RoboND
-jupyter notebook model_training_final.ipynb
+jupyter notebook model_training_6.ipynb
 ```
-* Run all cells. I have commented out the FCN training cell and model saving cell. So, it should pick up existing trained model and provide you the result.
+* Please run cells. Make sure that you don't run the training cell or saving the model cell, unless you want to see training. If you are running at that on AWS, I suggest increasing the num_epocs to 200.
 * Thanks for running the project! You should see following result at the end.
 
 ## Network Architecture
