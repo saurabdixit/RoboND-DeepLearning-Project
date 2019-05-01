@@ -211,6 +211,8 @@ We might need to go for more deeper convolution model because the environment an
 
 
 # Results/Conclusion:
+The output weight file can be found in data/weights/ folder. However, you will get 0.30 result on it.
+
 My current version is currently running on my local laptop. I am very positive that it will work.
 
 I know that I don't have the perfect 0.40 result as expected. However, I am pretty sure that if you run my notebook on with above parameters on AWS and train the FCN. It will work.
