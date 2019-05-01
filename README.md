@@ -28,7 +28,7 @@ $ git clone https://github.com/saurabdixit/RoboND-DeepLearning-Project.git
 conda activate RoboND
 jupyter notebook model_training_6.ipynb
 ```
-* Please run cells. Make sure that you don't run the training cell or saving the model cell, unless you want to see training. If you are running at that on AWS, I suggest increasing the num_epocs to 200.
+* Please run cells. Make sure that you don't run the training cell or saving the model cell, unless you want to see training. If you are running it on AWS, I suggest increasing the num_epocs to 200.
 * Thanks for running the project! You should see following result at the end.
 
 ## Network Architecture
