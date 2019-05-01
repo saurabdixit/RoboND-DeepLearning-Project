@@ -154,6 +154,30 @@ I know I should be discussing this section at the end. However, I would like to 
 * What I did was uploaded the model_training.ipynb to the segmentation lab folder and tested my parameters there. Initially, I thought of training the FCN on Udacity's GPU enabled workspace, downloading the model_weights file locally, and then verifying the accuracy on that. For some reason, I did not get any outputs from it. I am not sure why? If possible, can reviewer answer my question?
 * Anyways, so I tried multiple parameters on GPU enabled workspace, used the parameters locally for training, and was able to train the model using parameters mentioned in following section.
 
+## Previous trials:
+All of my previous trials are provided as PDF file in the folder named "previous_trials". Here is the summary out of it:
+
+## Current model:
+I am using following parameters in the current model:
+```python
+learning_rate = 0.001
+batch_size = 10
+num_epochs = 100
+steps_per_epoch = 30
+validation_steps = 50
+workers = 2
+```
+### Learning Rate:
+I started with 0.001 learning rate. I tried the learning rate of 0.01 which was not converging my model. I also tried smaller 0.0002 and 0.0001. As per any machine learning guideline, smaller learning rate means better learning. However, for this model, 0.001 worked best for me.
+
+### Batch size:
+I know my batch size is small. However, I had to make it small because of my computer restriction. If I would have ran it on AWS, I would have kept it to bigger size. As this is the deciding factor in when to update the weights. 
+
+### Number of Epochs:
+
+
+
+
 
 
 
