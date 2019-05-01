@@ -149,17 +149,17 @@ Following is the shape of the input, all layers, and output:
 
 |SNo |Layer 	 | Dimensions		|
 |--- |---		 |---				|
-|1.  |Input:     |(?, 160, 160, 3)  |
-|2.  |Layer 1:   |(?, 80, 80, 32)   |
-|3.  |Layer 2:   |(?, 40, 40, 64)   |
-|4.  |Layer 3:   |(?, 20, 20, 128)  |
-|5.  |Layer 4:   |(?, 10, 10, 256)  |
-|6.  |1x1 conv:  |(?, 10, 10, 1024) |
-|7.  |Decoder 1: |(?, 20, 20, 128)  |
-|8.  |Decoder 2: |(?, 40, 40, 64)   |
-|9.  |Decoder 3: |(?, 80, 80, 32)   |
-|10. |Decoder 4: |(?, 160, 160, 3)  |
-|11. |Output:    |(?, 160, 160, 3)  |
+|1   |Input      |(?, 160, 160, 3)  |
+|2   |Layer 1    |(?, 80, 80, 32)   |
+|3   |Layer 2    |(?, 40, 40, 64)   |
+|4   |Layer 3    |(?, 20, 20, 128)  |
+|5   |Layer 4    |(?, 10, 10, 256)  |
+|6   |1x1 conv   |(?, 10, 10, 1024) |
+|7   |Decoder 1  |(?, 20, 20, 128)  |
+|8   |Decoder 2  |(?, 40, 40, 64)   |
+|9   |Decoder 3  |(?, 80, 80, 32)   |
+|10  |Decoder 4  |(?, 160, 160, 3)  |
+|11  |Output     |(?, 160, 160, 3)  |
 
 In next section, I am discussing about my previous trials and what went wrong.
 
