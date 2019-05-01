@@ -34,7 +34,7 @@ jupyter notebook model_training_final.ipynb
 ## Network Architecture
 In this project, we have used tensorflow's library to implement fully convolutional neural network. Our FCN has following components:
 1. Encoder block
-2. Decoder block a person from the images generated from the quadsim simulator.
+2. Decoder block
 3. 1x1 convolution layer
 
 ![Encoder -> 1x1 Convolution Layer -> Decoder][image_3] 
@@ -93,7 +93,7 @@ Above function fullfills three purposes as mentioned in the model_training jupyt
 There are multiple purposes that 1x1 convolution is used:
 1) Parameter reduction
 2) Feature pooling
-3) Dimensionality reduction
+3) Changing Dimensions
 4) Inception module
 
 As discussed in the lecture, if you use this in the middle of encoder and decoder, it will act as a mini-neural network which runs on the patch of the image. It is a way to make the model more deeper and have more parameters without any additional cost.
@@ -103,7 +103,7 @@ In FCN model, I am using 1x1 convolution using conv2d_batchnorm function provide
 #### comparison with fully connected layer
 Fully connected layers are basically a convolution layer with filters with the same size as input. Hence, there is one to one connection between each unit and input layer. 
 Fully connected layers doesn't contain any spatial information. Hence, we can't use them for semantic segmentation. They are generally used as last layers of CNN to output classification predictions.
-Also, the output size of fully connected layer is fixed. However,in 1x1 convolution, we can get different output sizes. 
+Also, the output size of fully connected layer is fixed. However, in 1x1 convolution, we can get different output sizes. 
 
 ## Fully Convolutional Model
 I tried many combinations of encoder and decoder block. There are many problems that I faced because of which I had to go with many convolutional layers. I am discussing those problem in next section.
@@ -146,7 +146,8 @@ def fcn_model(inputs, num_classes):
     return layers.Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
 ```
 Following is the shape of the input, all layers, and output:
-
+|SNo |Layer 	 | Dimensions		|
+|---|---|---|
 |1.  |Input:     |(?, 160, 160, 3)  |
 |2.  |Layer 1:   |(?, 80, 80, 32)   |
 |3.  |Layer 2:   |(?, 40, 40, 64)   |
@@ -175,6 +176,7 @@ I know I should be discussing this section at the end. However, I would like to 
 All of my previous trials are provided as PDF file in the folder named "previous_trials".
 
 |# of encoders/decoders | learning_rate | batch_size | num_epochs | Result |
+|---					|---			|---		 |---		  |---	   |
 |3						| 0.0002		| 20		 | 50		  | 0.23   |
 |4						| 0.001			| 1			 | 50		  | 0.27   |
 |4						| 0.001			| 10		 | 100		  | 0.30   |
@@ -199,7 +201,7 @@ I started with 0.001 learning rate. I tried the learning rate of 0.01 which was 
 I know my batch size is small. However, I had to make it small because of my computer restriction. If I would have ran it on AWS, I would have kept it to bigger size. As this is the deciding factor in when to update the weights. 
 
 ### Number of Epochs:
-More the number of epochs more is the number of weights modification. Hence, We have to make sure to keep this number large and check what works best. However, I have seen that even if we see convergence at 50 epochs and we continue running the training, we get better traing results. I think because it tries to adapt to validation data. But if that is the case, it will not show good results on the test data which is completely hidden. However, That does not happen on 200 mark. Maybe if we increase it more, we will get to point when there are no errors on validation set but it fails on test set.
+More the number of epochs more is the number of weights modification. Hence, We have to make sure to keep this number large and check what works best. However, I have seen that even if we see convergence at 50 epochs and we continue running the training, we get better traing results. In following test, which I ran on GPU enabled workspace, it continues to learn but the learning slope is very less.  I think because it tries to adapt to validation data. But if that is the case, it will not show good results on the test data which is completely hidden. However, That does not happen on 200 mark. Maybe if we increase it more, we will get to point when there are no errors on validation set but it fails on test set.
 
 ![Image from model training from segmentation lab][image_1] 
 
