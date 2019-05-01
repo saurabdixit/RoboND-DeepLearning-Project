@@ -146,8 +146,9 @@ def fcn_model(inputs, num_classes):
     return layers.Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
 ```
 Following is the shape of the input, all layers, and output:
+
 |SNo |Layer 	 | Dimensions		|
-|---|---|---|
+|--- |---		 |---				|
 |1.  |Input:     |(?, 160, 160, 3)  |
 |2.  |Layer 1:   |(?, 80, 80, 32)   |
 |3.  |Layer 2:   |(?, 40, 40, 64)   |
