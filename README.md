@@ -29,7 +29,7 @@ conda activate RoboND
 jupyter notebook model_training_6.ipynb
 ```
 * Please run cells. Make sure that you don't run the training cell or saving the model cell, unless you want to see training. If you are running it on AWS, I suggest increasing the num_epocs to 200.
-* Thanks for running the project! You should see following result at the end.
+* Thanks for running the project!
 
 ## Network Architecture
 In this project, we have used tensorflow's library to implement fully convolutional neural network. Our FCN has following components:
@@ -212,6 +212,7 @@ We might need to go for more deeper convolution model because the environment an
 
 # Results/Conclusion:
 My current version is currently running on my local laptop. I am very positive that it will work.
+
 I know that I don't have the perfect 0.40 result as expected. However, I am pretty sure that if you run my notebook on with above parameters on AWS and train the FCN. It will work.
 Please look at my results in model_training_from_segmentation_lab.pdf. I have trained that on segmentation lab workspace using GPU. See that I was able to get loss less than 0.0120 on train and 0.0267 on validation. 
 The only reason, I couldn't get the results on the segmentation lab's GPU enabled workspace is because "sample_evaluation_data" folder is missing there. 
