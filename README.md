@@ -2,9 +2,12 @@
 
 # Deep Learning Project
 
-In this project, we have trained a Fully Convolutional Network to learn to follow a person from the images generated from the quadsim simulator.
+In this project, we have trained a Fully Convolutional Network to find the person in a given scene to follow.
 
 [image_0]: ./docs/misc/conv_result.png
+[image_1]: ./docs/misc/Result_1.png
+[image_2]: ./docs/misc/Result_2.png
+[image_3]: ./docs/misc/Encoder_decoder.png
 ![alt text][image_0] 
 
 ## Instructions to run the project
@@ -20,7 +23,7 @@ $ git clone https://github.com/saurabdixit/RoboND-DeepLearning-Project.git
 
 [Sample Evaluation Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Project/sample_evaluation_data.zip)
 
-* Make sure that you have RoboND conda environment and tensorflow installed. Navigate to the code directory, activate your conda environment, and open the jupyter notebook.
+* Make sure that you have RoboND conda environment and tensorflow installed. Navigate to the code directory, activate your conda environment, and open the jupyter notebook labeled as model_training_final.ipynb.
 ```
 conda activate RoboND
 jupyter notebook model_training_final.ipynb
@@ -31,10 +34,10 @@ jupyter notebook model_training_final.ipynb
 ## Network Architecture
 In this project, we have used tensorflow's library to implement fully convolutional neural network. Our FCN has following components:
 1. Encoder block
-2. Decoder block
+2. Decoder block a person from the images generated from the quadsim simulator.
 3. 1x1 convolution layer
 
-## ADD the image from class here
+![Encoder -> 1x1 Convolution Layer -> Decoder][image_3] 
 
 Following section will cover above components in more details.
 
@@ -86,10 +89,21 @@ Above function fullfills three purposes as mentioned in the model_training jupyt
 
 
 ### 1x1 convolution layer
-<Need to add more details here>1x1 convolution layer is used between encoder and decoder. As discussed in the lecture, if you use this in the middle of encoder and decoder, it will act as a mini-neural network running on the patch instead of linear classifier. It is a way to make the model more deeper and have more parameters without any additional cost.
+1x1 convolution layer is used between encoder and decoder. 1x1 convolution layer maps the features from encoder to a semantic representation. 
+There are multiple purposes that 1x1 convolution is used:
+1) Parameter reduction
+2) Feature pooling
+3) Dimensionality reduction
+4) Inception module
+
+As discussed in the lecture, if you use this in the middle of encoder and decoder, it will act as a mini-neural network which runs on the patch of the image. It is a way to make the model more deeper and have more parameters without any additional cost.
 
 In FCN model, I am using 1x1 convolution using conv2d_batchnorm function provided in the model_training notebook.
 
+#### comparison with fully connected layer
+Fully connected layers are basically a convolution layer with filters with the same size as input. Hence, there is one to one connection between each unit and input layer. 
+Fully connected layers doesn't contain any spatial information. Hence, we can't use them for semantic segmentation. They are generally used as last layers of CNN to output classification predictions.
+Also, the output size of fully connected layer is fixed. However,in 1x1 convolution, we can get different output sizes. 
 
 ## Fully Convolutional Model
 I tried many combinations of encoder and decoder block. There are many problems that I faced because of which I had to go with many convolutional layers. I am discussing those problem in next section.
@@ -160,12 +174,18 @@ I know I should be discussing this section at the end. However, I would like to 
 ## Previous trials:
 All of my previous trials are provided as PDF file in the folder named "previous_trials".
 
+|# of encoders/decoders | learning_rate | batch_size | num_epochs | Result |
+|3						| 0.0002		| 20		 | 50		  | 0.23   |
+|4						| 0.001			| 1			 | 50		  | 0.27   |
+|4						| 0.001			| 10		 | 100		  | 0.30   |
+|4						| 0.001			| 50		 | 100		  | in progress|
+
 ## Current model:
 I am using following parameters in the current model:
 ```python
 learning_rate = 0.001
 batch_size = 50
-num_epochs = 200
+num_epochs = 100
 steps_per_epoch = 30
 validation_steps = 50
 workers = 4
@@ -181,17 +201,24 @@ I know my batch size is small. However, I had to make it small because of my com
 ### Number of Epochs:
 More the number of epochs more is the number of weights modification. Hence, We have to make sure to keep this number large and check what works best. However, I have seen that even if we see convergence at 50 epochs and we continue running the training, we get better traing results. I think because it tries to adapt to validation data. But if that is the case, it will not show good results on the test data which is completely hidden. However, That does not happen on 200 mark. Maybe if we increase it more, we will get to point when there are no errors on validation set but it fails on test set.
 
+![Image from model training from segmentation lab][image_1] 
+
 # Using this model on different objects (Car, Dog, Cat)
 We might need to go for more deeper convolution model because the environment and the training images that were given to us were generated/taken in Ideal scenario. Hence, there are many reasons like training on the images with sun glare, blurred images, images when there is snow everywhere etc. where such model might not work. 
 
 
 # Results/Conclusion:
+My current version is currently running on my local laptop. I am very positive that it will work.
 I know that I don't have the perfect 0.40 result as expected. However, I am pretty sure that if you run my notebook on with above parameters on AWS and train the FCN. It will work.
+Please look at my results in model_training_from_segmentation_lab.pdf. I have trained that on segmentation lab workspace using GPU. See that I was able to get loss less than 0.0120 on train and 0.0267 on validation. 
+The only reason, I couldn't get the results on the segmentation lab's GPU enabled workspace is because "sample_evaluation_data" folder is missing there. 
 
-Please look at my notebook model_training_from_segmentation_lab.pdf. I have trained that on segmentation lab workspace using GPU. See that I was able to get loss less than 0.015. 
-The only reason, I couldn't get the results on the segmentation GPU enabled workspace is because "sample_evaluation_data" folder is missing there. 
+![alt text][image_2] 
 
 
-
+# Future Improvement:
+1. Need to push the limits on this project. See what parameters can be used to reduce the loss further.
+2. Try more deeper convolutional model and compare the performance of these two.
+3. Check this model with different images Dogs, cars, cats to check whether this work.
 
 
