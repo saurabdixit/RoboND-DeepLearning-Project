@@ -23,7 +23,7 @@ $ git clone https://github.com/saurabdixit/RoboND-DeepLearning-Project.git
 
 [Sample Evaluation Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Project/sample_evaluation_data.zip)
 
-* Make sure that you have RoboND conda environment and tensorflow installed. Navigate to the code directory, activate your conda environment, and open the jupyter notebook labeled as model_training_final.ipynb.
+* Make sure that you have RoboND conda environment and tensorflow installed. Navigate to the code directory, activate your conda environment, and open the jupyter notebook labeled as model_training_6.ipynb.
 ```
 conda activate RoboND
 jupyter notebook model_training_final.ipynb
