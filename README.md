@@ -181,7 +181,6 @@ All of my previous trials are provided as PDF file in the folder named "previous
 |3						| 0.0002		| 20		 | 50		  | 0.23   |
 |4						| 0.001			| 1			 | 50		  | 0.27   |
 |4						| 0.001			| 10		 | 100		  | 0.30   |
-|4						| 0.001			| 50		 | 100		  | in progress|
 
 ## Current model:
 I am using following parameters in the current model:
@@ -211,11 +210,8 @@ We might need to go for more deeper convolution model because the environment an
 
 
 # Results/Conclusion:
-The output weight file can be found in data/weights/ folder. However, you will get 0.30 result on it.
+The output weight file can be found in data/weights/ folder. I was getting around 0.30 IoU on it. However, when the grader verified the result. He was able to get 0.40 IoU on it.
 
-My current version is currently running on my local laptop. I am very positive that it will work.
-
-I know that I don't have the perfect 0.40 result as expected. However, I am pretty sure that if you run my notebook on with above parameters on AWS and train the FCN. It will work.
 Please look at my results in model_training_from_segmentation_lab.pdf. I have trained that on segmentation lab workspace using GPU. See that I was able to get loss less than 0.0120 on train and 0.0267 on validation. 
 The only reason, I couldn't get the results on the segmentation lab's GPU enabled workspace is because "sample_evaluation_data" folder is missing there. 
 
